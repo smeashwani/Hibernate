@@ -5,7 +5,7 @@
 	<groupId>hibernate.training</groupId>
 	<artifactId>hibernate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
- 
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,10 +21,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.4.0</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.0.8</version>
 		</dependency>
+
 	</dependencies>
 
 </project>
