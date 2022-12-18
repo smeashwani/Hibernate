@@ -24,7 +24,7 @@ public class Runner {
 		session.save(e1);
 		t.commit();
 		System.out.println("successfully saved");
-		factory.close();
 		session.close();
+		factory.close();
 	}
 }
