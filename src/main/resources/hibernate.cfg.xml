@@ -6,7 +6,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Select our SQL dialect -->
-		<property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<!-- JDBC Database connection settings -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost:3306/training</property>
@@ -14,10 +14,11 @@
 		<property name="connection.password">root</property>
 		<!-- Echo the SQL to stdout -->
 		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
 		<!-- Mapping files -->
-		<mapping resource="employee.hbm.xml" />
-		<!-- <mapping class="hibernate.training.entity.Employee" /> -->
+		<!-- <mapping resource="employee.hbm.xml" />-->
+		<mapping class="hibernate.training.entity.Employee" /> 
 	 </session-factory> 
 </hibernate-configuration> 

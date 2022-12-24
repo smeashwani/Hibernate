@@ -1,8 +1,22 @@
 package hibernate.training.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="emp")
 public class Employee {
-	private int id;  
-	private String firstName,lastName;
+	
+	@Id
+	private int id;
+	
+	@Column(name="first_Name")
+	private String firstName;
+	
+	private String lastName;
+	
 	public Employee() {}
 	
 	public int getId() {
