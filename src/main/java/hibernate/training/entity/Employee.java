@@ -2,6 +2,8 @@ package hibernate.training.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,6 +12,7 @@ import jakarta.persistence.Table;
 public class Employee {
 	
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
 	
 	@Column(name="first_Name")
@@ -37,6 +40,13 @@ public class Employee {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
+	
 
 } 
  

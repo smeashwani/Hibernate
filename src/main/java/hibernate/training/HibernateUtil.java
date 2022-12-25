@@ -9,11 +9,13 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
 	
-	public static Session getSession(){
-		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-		Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
-		SessionFactory factory = meta.getSessionFactoryBuilder().build();
-		return factory.openSession();
+	static StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+	static Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
+	static SessionFactory build =null;
+	public static SessionFactory getSessionFactory(){
+		if(build == null) {
+			build = meta.getSessionFactoryBuilder().build();
+		}
+		return build;
 	}
-
 }
