@@ -31,16 +31,16 @@ public class Runner {
 			e1.setFirstName("Guest_1");
 			e1.setLastName("DUCAT_1");
 			session.persist(e1);
-			System.out.println("successfully saved");
 		tx.commit();
+		System.out.println("successfully saved : "+ e1);
 		
 		tx = session.beginTransaction();
 			e1 = new Employee();
 			e1.setFirstName("Guest_2");
 			e1.setLastName("DUCAT_2");
 			session.persist(e1);
-			System.out.println("successfully saved");
 		tx.commit();
+		System.out.println("successfully saved: "+ e1);
 		
 		
 		tx = session.beginTransaction();
@@ -48,16 +48,16 @@ public class Runner {
 			e1.setFirstName("Guest_3");
 			e1.setLastName("DUCAT_3");
 			session.persist(e1);
-			System.out.println("successfully saved");
 		tx.commit();
+		System.out.println("successfully saved: "+ e1);
 	
 		tx = session.beginTransaction();
 			e1 = new Employee();
 			e1.setFirstName("Guest_4");
 			e1.setLastName("DUCAT_4");
 			session.persist(e1);
-			System.out.println("successfully saved");
 		tx.commit();
+		System.out.println("successfully saved: "+ e1);
 		
 		
 		// @formatter:on
