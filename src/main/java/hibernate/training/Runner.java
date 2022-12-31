@@ -14,13 +14,29 @@ public class Runner {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		System.out.println("..............Open Session .............");
 			//save(session);
-			fetch(session);
+			//fetchAll(session);
+		fetchGet(session);
+		fetchLoad(session);
 		System.out.println("..............Close Session .............");
 		session.close();
 		System.out.println("<<<<<<<<<<<");
 	}
+	
+	private static void fetchGet(Session session) {
+		System.out.println("GET....");
+		Employee employee = session.get(Employee.class, -1);
+		System.out.println("GET from DB");
+		System.out.println(employee);
+	}
+	
+	private static void fetchLoad(Session session) {
+		System.out.println("LOAD....");
+		Employee employee = session.load(Employee.class, -1);
+		System.out.println("Load from DB");
+		System.out.println(employee);
+	}
 
-	private static void fetch(Session session) {
+	private static void fetchAll(Session session) {
 		Query<Employee> query = session.createQuery("From Employee", Employee.class);
 		List<Employee> resultList = query.getResultList();
 		resultList.forEach(System.out::println);
