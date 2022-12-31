@@ -1,34 +1,47 @@
 package hibernate.training;
 
-import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.query.NativeQuery;
-import org.hibernate.transform.AliasToBeanResultTransformer;
-import org.hibernate.transform.AliasToEntityMapResultTransformer;
 
 import hibernate.training.entity.Employee;
 
 public class Runner {
 	public static void main(String[] args) {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session1 = HibernateUtil.getSessionFactory().openSession();
+		Session session2 = HibernateUtil.getSessionFactory().openSession();
 		System.out.println("..............Open Session .............");
 		
-			fetchAll(session);
+			fetchAll1(session1);
+			fetchAll2(session2);
 		
 		System.out.println("..............Close Session .............");
-		session.close();
+		session1.close();
+		session2.close();
 		System.out.println("<<<<<<<<<<<");
 	}
 
-	@SuppressWarnings("deprecation")
-	private static void fetchAll(Session session) {
-		String sql = "SELECT first_name as firstName, lastName FROM emp";
-		NativeQuery query = session.createNativeQuery(sql);
-		query.setResultTransformer(new AliasToBeanResultTransformer(Employee.class));
-		List employees = query.list();
-		 employees.forEach(System.out::println);
+	private static void fetchAll1(Session session) {
+		System.out.println("GET Session1()");
+		Employee employee = session.get(Employee.class, -1);
+		System.out.println("GET Session1...");
+		System.out.println(employee);
+		
+		System.out.println("GET Session1");
+		employee = session.get(Employee.class, -1);
+		System.out.println("GET Session1");
+		System.out.println(employee);
+	}
+	
+	private static void fetchAll2(Session session) {
+		System.out.println("GET Session2()");
+		Employee employee = session.get(Employee.class, -1);
+		System.out.println("GET Session2...");
+		System.out.println(employee);
+		
+		System.out.println("GET Session2");
+		employee = session.get(Employee.class, -1);
+		System.out.println("GET Session2");
+		System.out.println(employee);
 	}
 	
 	

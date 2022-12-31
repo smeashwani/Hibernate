@@ -17,10 +17,17 @@
 		<property name="format_sql">false</property>
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
-		
+
 		<property name="javax.persistence.sql-load-script-source">data.sql</property>
+
+		<property name="hibernate.generate_statistics">true</property>
+
+		<property name="hibernate.cache.region.factory_class">jcache</property>
+		<property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+
 		<!-- Mapping files -->
-		<!-- <mapping resource="employee.hbm.xml" />-->
-		<mapping class="hibernate.training.entity.Employee" /> 
-	 </session-factory> 
+		<!-- <mapping resource="employee.hbm.xml" /> -->
+		<mapping class="hibernate.training.entity.Employee" />
+	</session-factory>
 </hibernate-configuration> 

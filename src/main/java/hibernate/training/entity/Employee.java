@@ -1,5 +1,8 @@
 package hibernate.training.entity;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +19,7 @@ import jakarta.persistence.Table;
 	        )
 	    }  
 )
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Entity
 @Table(name="emp")
 public class Employee {
@@ -54,8 +58,5 @@ public class Employee {
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
-	
-	
-
 } 
  
