@@ -10,6 +10,7 @@ import hibernate.training.entity.Employee;
 
 public class Runner {
 	public static void main(String[] args) {
+		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 			save(session);
