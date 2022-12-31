@@ -5,8 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
-
+@NamedQueries(  
+	    {  
+	        @NamedQuery(  
+	        name = "findEmployeeByName",  
+	        query = "from Employee e where e.firstName = :name"  
+	        )
+	    }  
+)
 @Entity
 @Table(name="emp")
 public class Employee {
