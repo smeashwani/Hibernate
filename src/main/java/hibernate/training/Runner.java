@@ -10,13 +10,14 @@ import hibernate.training.entity.Employee;
 
 public class Runner {
 	public static void main(String[] args) {
-		
+		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
-			save(session);
+		System.out.println("..............Open Session .............");
+			//save(session);
 			fetch(session);
-		
+		System.out.println("..............Close Session .............");
 		session.close();
+		System.out.println("<<<<<<<<<<<");
 	}
 
 	private static void fetch(Session session) {
