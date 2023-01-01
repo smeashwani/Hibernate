@@ -1,7 +1,6 @@
 package hibernate.training.entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,9 +10,8 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="emp")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue(value="emp")
-public class Employee {
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class Employee {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -22,7 +20,7 @@ public class Employee {
 	@Column(name="first_Name")
 	private String firstName;
 	
-	private String lastName;
+	private String lastName; 
 	
 	public Employee() {}
 	

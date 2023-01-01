@@ -33,10 +33,10 @@ public class Runner {
 	private static void save(Session session) {
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
-		Employee e = new Employee();
-		e.setFirstName("First");
-		e.setLastName("last");
-		session.persist(e);
+//		Employee e = new Employee();
+//		e.setFirstName("First");
+//		e.setLastName("last");
+//		session.persist(e);
 		
 		Regular_Employee re = new Regular_Employee();
 		re.setFirstName("regular");

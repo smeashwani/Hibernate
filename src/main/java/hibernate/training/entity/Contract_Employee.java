@@ -1,10 +1,8 @@
 package hibernate.training.entity;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value="contract")
 public class Contract_Employee extends Employee {
 	private float pay_per_hour;
 	private String contract_duration;
