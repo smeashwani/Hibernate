@@ -1,27 +1,18 @@
 package hibernate.training.entity;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
-@NamedQueries(  
-	    {  
-	        @NamedQuery(  
-	        name = "findEmployeeByName",  
-	        query = "from Employee e where e.firstName = :name"  
-	        )
-	    }  
-)
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Entity
 @Table(name="emp")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorValue(value="emp")
 public class Employee {
 	
 	@Id
@@ -58,5 +49,7 @@ public class Employee {
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
+	
+
 } 
  

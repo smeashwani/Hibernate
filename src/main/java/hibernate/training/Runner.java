@@ -1,52 +1,57 @@
 package hibernate.training;
 
-import org.hibernate.Session;
+import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import hibernate.training.entity.Contract_Employee;
 import hibernate.training.entity.Employee;
+import hibernate.training.entity.Regular_Employee;
 
 public class Runner {
 	public static void main(String[] args) {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
-		Session session1 = HibernateUtil.getSessionFactory().openSession();
-		Session session2 = HibernateUtil.getSessionFactory().openSession();
-		System.out.println("..............Open Session .............");
+		Session session = HibernateUtil.getSessionFactory().openSession();
 		
-			fetchAll1(session1);
-			fetchAll2(session2);
+			save(session);
+			fetchAll(session);
 		
 		System.out.println("..............Close Session .............");
-		session1.close();
-		session2.close();
+		session.close();
 		System.out.println("<<<<<<<<<<<");
 	}
 
-	private static void fetchAll1(Session session) {
-		System.out.println("GET Session1()");
-		Employee employee = session.get(Employee.class, -1);
-		System.out.println("GET Session1...");
-		System.out.println(employee);
+	@SuppressWarnings("deprecation")
+	private static void fetchAll(Session session) {
+		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
+		resultList.forEach(System.out::println);
 		
-		System.out.println("GET Session1");
-		employee = session.get(Employee.class, -1);
-		System.out.println("GET Session1");
-		System.out.println(employee);
-	}
-	
-	private static void fetchAll2(Session session) {
-		System.out.println("GET Session2()");
-		Employee employee = session.get(Employee.class, -1);
-		System.out.println("GET Session2...");
-		System.out.println(employee);
 		
-		System.out.println("GET Session2");
-		employee = session.get(Employee.class, -1);
-		System.out.println("GET Session2");
-		System.out.println(employee);
 	}
-	
-	
 
-
-
-	
+	private static void save(Session session) {
+		Transaction transaction = session.getTransaction();
+		transaction.begin();
+		Employee e = new Employee();
+		e.setFirstName("First");
+		e.setLastName("last");
+		session.persist(e);
+		
+		Regular_Employee re = new Regular_Employee();
+		re.setFirstName("regular");
+		re.setLastName("emp");
+		re.setBonus(10_000);
+		re.setSalary(50_000);
+		session.persist(re);
+		
+		Contract_Employee ce = new Contract_Employee();
+		ce.setFirstName("contract");
+		ce.setLastName("employeee");
+		ce.setPay_per_hour(5.5f);
+		ce.setContract_duration("100");
+		session.persist(ce);
+		
+		transaction.commit();
+	}
 }
