@@ -10,8 +10,8 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="emp")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Employee {
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
