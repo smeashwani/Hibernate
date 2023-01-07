@@ -5,9 +5,11 @@ import java.util.Arrays;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 
@@ -24,8 +26,8 @@ public class Employee {
 	
 	private String lastName;
 	
-	@ElementCollection
-	public String[] qualification;
+	@OneToOne(fetch= FetchType.LAZY)
+	public Address address;
 	
 	public Employee() {}
 	
@@ -50,12 +52,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", qualification="
-				+ Arrays.toString(qualification) + "]";
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
+				+ "]";
 	}
-
-	
-	
-
 } 
  

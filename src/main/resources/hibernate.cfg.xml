@@ -25,7 +25,6 @@
 		<!-- Mapping files -->
 		<!-- <mapping resource="employee.hbm.xml" /> -->
 		<mapping class="hibernate.training.entity.Employee" />
-		<mapping class="hibernate.training.entity.Contract_Employee" />
-		<mapping class="hibernate.training.entity.Regular_Employee" />
+		<mapping class="hibernate.training.entity.Address" />
 	</session-factory>
 </hibernate-configuration> 
