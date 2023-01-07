@@ -1,16 +1,12 @@
 package hibernate.training.entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Table;
-@Entity
-@Table(name="emp")
-@Inheritance(strategy=InheritanceType.JOINED)
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Employee {
 	
 	@Id

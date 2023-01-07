@@ -1,8 +1,16 @@
 package hibernate.training.entity;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
+//@AttributeOverride(name = "firstName", column = @Column(name = "FName"))
+@AttributeOverrides({
+@AttributeOverride(name = "firstName", column = @Column(name = "FName")),
+@AttributeOverride(name = "lastName", column = @Column(name = "LName"))
+})
 public class Contract_Employee extends Employee {
 	private float pay_per_hour;
 	private String contract_duration;

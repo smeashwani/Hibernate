@@ -24,7 +24,7 @@ public class Runner {
 
 	@SuppressWarnings("deprecation")
 	private static void fetchAll(Session session) {
-		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
+		List<Regular_Employee> resultList = session.createQuery("From Regular_Employee",Regular_Employee.class).getResultList();
 		resultList.forEach(System.out::println);
 		
 		
