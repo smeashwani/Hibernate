@@ -1,13 +1,18 @@
 package hibernate.training;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import hibernate.training.entity.Contract_Employee;
+import com.sun.org.apache.xerces.internal.impl.dv.ValidatedInfo;
+
 import hibernate.training.entity.Employee;
-import hibernate.training.entity.Regular_Employee;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 public class Runner {
 	public static void main(String[] args) {
@@ -35,19 +40,24 @@ public class Runner {
 		transaction.begin();
 		Employee e = new Employee();
 		e.setFirstName("First");
-		e.setLastName("last");
-		Contract_Employee contract = new Contract_Employee();
-		contract.setContract_duration("100");
-		contract.setPay_per_hour(50);
-		e.setContract(contract);
-		Regular_Employee regular = new Regular_Employee();
-		regular.setBonus(100);
-		regular.setSalary(50_000);
-		e.setRegular(regular);
-		session.persist(e);
-		
-		
-		
+		//e.setLastName("last");
+		if(validate(e)) {
+			session.persist(e);
+		}
 		transaction.commit();
+	}
+	
+	static public boolean validate(Employee e1) {
+	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	      //It validates bean instances
+	      Validator validator = factory.getValidator();
+	      Set<ConstraintViolation<Employee>> constraintViolations = validator.validate(e1);
+	      if (constraintViolations.size() > 0) {
+	            for (ConstraintViolation<Employee> violation : constraintViolations) {
+	                System.err.println(violation.getMessage());
+	            }
+	            return false;
+	       }
+	      return true;
 	}
 }

@@ -1,15 +1,13 @@
 package hibernate.training.entity;
 
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -21,24 +19,13 @@ public class Employee {
 	private int id;
 	
 	@Column(name="first_Name")
+	@Size(max=2,message="Only 2 Character Allow")
 	private String firstName;
 	
+	@NotNull
 	private String lastName;
 	
-	@Transient
-	private String fullName;
-	
 	public Employee() {}
-	
-	
-	@Embedded
-	private Contract_Employee contract;
-	
-	@Embedded
-	@AttributeOverrides({
-	@AttributeOverride(name = "bonus", column = @Column(name = "bonusAmount", length = 11))
-	})
-	private Regular_Employee regular;
 	
 	public int getId() {
 		return id;
@@ -59,27 +46,9 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public Contract_Employee getContract() {
-		return contract;
-	}
-	public void setContract(Contract_Employee contract) {
-		this.contract = contract;
-	}
-	public Regular_Employee getRegular() {
-		return regular;
-	}
-	public void setRegular(Regular_Employee regular) {
-		this.regular = regular;
-	}
-	
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", contract=" + contract
-				+ ", regular=" + regular + " Full Name="+ getFullName()+"]";
-	}
-	
-	public String getFullName() {
-		return this.firstName + this.lastName;
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	
 	
