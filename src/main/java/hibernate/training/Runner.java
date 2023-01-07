@@ -32,6 +32,7 @@ public class Runner {
 		Employee e = new Employee();
 		e.setFirstName("First");
 		e.setLastName("last");
+		e.qualification = new String[]{"B-TECH","MTech"};
 		session.persist(e);
 		transaction.commit();
 	}

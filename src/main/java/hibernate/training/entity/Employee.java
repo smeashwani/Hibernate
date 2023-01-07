@@ -1,6 +1,9 @@
 package hibernate.training.entity;
 
+import java.util.Arrays;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +23,9 @@ public class Employee {
 	private String firstName;
 	
 	private String lastName;
+	
+	@ElementCollection
+	public String[] qualification;
 	
 	public Employee() {}
 	
@@ -44,8 +50,10 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", qualification="
+				+ Arrays.toString(qualification) + "]";
 	}
+
 	
 	
 
