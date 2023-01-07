@@ -7,6 +7,10 @@ insert into emp (id, first_Name , lastName) values (-3, 'Script_GUEST3','LastNam
 insert into emp_Address (Employee_id,address_id) values (-1,-11);
 insert into emp_Address (Employee_id,address_id) values (-1,-12);
 insert into emp_Address (Employee_id,address_id) values (-1,-13);
-Update Address set employee_id = -1 where id= -11;
-Update Address set employee_id = -1 where id= -12;
-Update Address set employee_id = -1 where id= -13;
+insert into emp_Address (Employee_id,address_id) values (-2,-11);
+insert into Address_emp (Address_id,employee_id) values (-11,-1);
+insert into Address_emp (Address_id,employee_id) values (-11,-2);
+
+#Update Address set employee_id = -1 where id= -11;
+#Update Address set employee_id = -1 where id= -12;
+#Update Address set employee_id = -1 where id= -13;

@@ -1,10 +1,12 @@
 package hibernate.training.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Address {
@@ -17,8 +19,8 @@ public class Address {
 	public Address() {
 	}
 	
-	@ManyToOne
-	public Employee employee;
+	@ManyToMany
+	public List<Employee> employee;
 
 	public Address(String street, String city) {
 		super();
