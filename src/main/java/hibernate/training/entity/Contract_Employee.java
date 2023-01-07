@@ -1,17 +1,9 @@
 package hibernate.training.entity;
 
-import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.AttributeOverrides;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 
-@Entity
-//@AttributeOverride(name = "firstName", column = @Column(name = "FName"))
-@AttributeOverrides({
-@AttributeOverride(name = "firstName", column = @Column(name = "FName")),
-@AttributeOverride(name = "lastName", column = @Column(name = "LName"))
-})
-public class Contract_Employee extends Employee {
+@Embeddable
+public class Contract_Employee  {
 	private float pay_per_hour;
 	private String contract_duration;
 	
@@ -29,9 +21,7 @@ public class Contract_Employee extends Employee {
 	}
 	@Override
 	public String toString() {
-		return "Contract_Employee [pay_per_hour=" + pay_per_hour + ", contract_duration=" + contract_duration
-				+ ", getId()=" + getId() + ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName()
-				+ "]";
+		return "Contract_Employee [pay_per_hour=" + pay_per_hour ;
 	}
 	
 	

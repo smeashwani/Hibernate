@@ -1,9 +1,9 @@
 package hibernate.training.entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 
-@Entity
-public class Regular_Employee extends Employee {
+@Embeddable
+public class Regular_Employee {
 	private float salary;
 	private int bonus;
 	public float getSalary() {
@@ -18,12 +18,12 @@ public class Regular_Employee extends Employee {
 	public void setBonus(int bonus) {
 		this.bonus = bonus;
 	}
+	
 	@Override
 	public String toString() {
-		return "Regular_Employee [salary=" + salary + ", bonus=" + bonus + ", getId()=" + getId() + ", getFirstName()="
-				+ getFirstName() + ", getLastName()=" + getLastName() 
-				+ "]";
+		return "Regular_Employee [salary=" + salary + ", bonus=" + bonus + "]";
 	}
+	
 	
 	
 }

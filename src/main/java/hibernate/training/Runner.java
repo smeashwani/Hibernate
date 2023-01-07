@@ -24,7 +24,7 @@ public class Runner {
 
 	@SuppressWarnings("deprecation")
 	private static void fetchAll(Session session) {
-		List<Regular_Employee> resultList = session.createQuery("From Regular_Employee",Regular_Employee.class).getResultList();
+		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
 		resultList.forEach(System.out::println);
 		
 		
@@ -33,24 +33,20 @@ public class Runner {
 	private static void save(Session session) {
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
-//		Employee e = new Employee();
-//		e.setFirstName("First");
-//		e.setLastName("last");
-//		session.persist(e);
+		Employee e = new Employee();
+		e.setFirstName("First");
+		e.setLastName("last");
+		Contract_Employee contract = new Contract_Employee();
+		contract.setContract_duration("100");
+		contract.setPay_per_hour(50);
+		e.setContract(contract);
+		Regular_Employee regular = new Regular_Employee();
+		regular.setBonus(100);
+		regular.setSalary(50_000);
+		e.setRegular(regular);
+		session.persist(e);
 		
-		Regular_Employee re = new Regular_Employee();
-		re.setFirstName("regular");
-		re.setLastName("emp");
-		re.setBonus(10_000);
-		re.setSalary(50_000);
-		session.persist(re);
 		
-		Contract_Employee ce = new Contract_Employee();
-		ce.setFirstName("contract");
-		ce.setLastName("employeee");
-		ce.setPay_per_hour(5.5f);
-		ce.setContract_duration("100");
-		session.persist(ce);
 		
 		transaction.commit();
 	}
