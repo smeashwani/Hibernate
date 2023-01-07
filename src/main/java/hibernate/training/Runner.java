@@ -16,7 +16,7 @@ public class Runner {
 		
 			//save(session);
 			fetchAllEmployees(session1);
-			fetchAllAddress(session2);
+			//fetchAllAddress(session2);
 		
 		System.out.println("..............Close Session .............");
 		session1.close();
@@ -42,7 +42,7 @@ public class Runner {
 		resultList.forEach(add -> {
 		System.out.println(add);
 		});
-		System.out.println(resultList.get(1).employee);
+		//System.out.println(resultList.get(1).employee);
 		System.out.println("...............Address end...........");
 	}
 
@@ -54,6 +54,12 @@ public class Runner {
 		Employee e = new Employee();
 		e.setFirstName("First");
 		e.setLastName("last");
+		e.address = address;
+		session.persist(e);
+		
+		e = new Employee();
+		e.setFirstName("First2");
+		e.setLastName("last2");
 		e.address = address;
 		session.persist(e);
 		transaction.commit();

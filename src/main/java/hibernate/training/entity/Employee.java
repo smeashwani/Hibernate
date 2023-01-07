@@ -1,15 +1,11 @@
 package hibernate.training.entity;
 
-import java.util.Arrays;
-
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -26,7 +22,7 @@ public class Employee {
 	
 	private String lastName;
 	
-	@OneToOne(fetch= FetchType.LAZY)
+	@ManyToOne
 	public Address address;
 	
 	public Employee() {}

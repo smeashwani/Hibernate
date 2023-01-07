@@ -14,10 +14,6 @@ public class Address {
 	public String street;
 	public String city;
 	
-	//@OneToOne
-	@OneToOne(mappedBy = "address")
-	public Employee employee;
-	
 	public Address() {
 	}
 
