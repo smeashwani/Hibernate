@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 
 @Entity
@@ -22,9 +23,13 @@ public class Employee {
 	@Column(name="first_Name")
 	private String firstName;
 	
-	private String lastName; 
+	private String lastName;
+	
+	@Transient
+	private String fullName;
 	
 	public Employee() {}
+	
 	
 	@Embedded
 	private Contract_Employee contract;
@@ -70,8 +75,13 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", contract=" + contract
-				+ ", regular=" + regular + "]";
+				+ ", regular=" + regular + " Full Name="+ getFullName()+"]";
 	}
+	
+	public String getFullName() {
+		return this.firstName + this.lastName;
+	}
+	
 	
 
 } 
