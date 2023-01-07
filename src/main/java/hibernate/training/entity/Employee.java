@@ -6,8 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -19,10 +17,8 @@ public class Employee {
 	private int id;
 	
 	@Column(name="first_Name")
-	@Size(max=2,message="Only 2 Character Allow")
 	private String firstName;
 	
-	@NotNull
 	private String lastName;
 	
 	public Employee() {}
