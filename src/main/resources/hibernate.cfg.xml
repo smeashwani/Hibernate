@@ -18,7 +18,6 @@
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create-drop</property>
 		<!-- Mapping files -->
-		<!-- <mapping resource="employee.hbm.xml" />-->
 		<mapping class="hibernate.training.entity.Employee" /> 
 	 </session-factory> 
 </hibernate-configuration> 

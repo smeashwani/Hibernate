@@ -7,45 +7,52 @@ import hibernate.training.entity.Employee;
 
 public class Runner {
 	public static void main(String[] args) {
-		// Create typesafe ServiceRegistry object
+		saveMethod();
+		//persistMehtod();
+	}
+
+	
+	private static void persistMehtod() {
+			Employee e1 = new Employee();
+			e1.setFirstName("Gaurav");
+			try (Session session = HibernateUtil.getSessionFactory().openSession()){
+				// @formatter:off
+				Transaction tx = session.beginTransaction();
+					session.persist(e1); 
+				tx.commit();
+				System.out.println("successfully saved : "+ e1);
+
+				session.evict(e1); // detached entity
+				tx = session.beginTransaction();
+					session.persist(e1); // generate exception for detached entity
+				tx.commit();
+				System.out.println("successfully saved : "+ e1);
+				
+				// @formatter:on
+			}
+			System.out.println("successfully operation completed");		
+	}
+
+
+	private static void saveMethod() {
+		Employee e1 = new Employee();
+		e1.setFirstName("Gaurav");
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 
 			// @formatter:off
 			Transaction tx = session.beginTransaction();
-				Employee e1 = new Employee();
-				e1.setId(101);
-				e1.setFirstName("Gaurav");
 				session.save(e1);
-				System.out.println("successfully saved");
 			tx.commit();
-			
-	
+			System.out.println("successfully saved : "+ e1);
+
+			session.evict(e1); // detached Entity
 			tx = session.beginTransaction();
-				e1 = new Employee();
-				e1.setId(102);
-				e1.setFirstName("Gaurav_2");
-				session.save(e1);
-				System.out.println("successfully saved");
-			tx.commit();
+				session.save(e1); // save the object and generate the another ID
+			tx.commit(); 
+			System.out.println("successfully saved : "+ e1);
 			
-			tx = session.beginTransaction();
-				e1 = new Employee();
-				e1.setId(103);
-				e1.setFirstName("Gaurav_3");
-				session.save(e1);
-				System.out.println("successfully saved");
-			tx.commit();
-			
-			tx = session.beginTransaction();
-				e1 = new Employee();
-				e1 = new Employee();
-				e1.setId(104);
-				e1.setFirstName("Gaurav_4");
-				session.save(e1);
-				System.out.println("successfully saved");
-			tx.commit();
 			// @formatter:on
 		}
-		System.out.println("successfully operation completed");
+		System.out.println("successfully operation completed");		
 	}
 }
