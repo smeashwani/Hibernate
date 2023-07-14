@@ -16,7 +16,7 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">false</property>
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">create-drop</property>
 		<!-- Mapping files -->
 		<!-- <mapping resource="employee.hbm.xml" />-->
 		<mapping class="hibernate.training.entity.Employee" /> 
