@@ -21,7 +21,7 @@ public class Runner {
 	}
 
 	private static void fetchAll(Session session) {
-		 TypedQuery query =session.getNamedQuery("findEmployeeByName");    
+		 TypedQuery<Employee> query =session.createNamedQuery("findEmployeeByName",Employee.class);    
 		 query.setParameter("name","Script_GUEST1");      
 		 List<Employee> employees=query.getResultList();
 		 employees.forEach(System.out::println);
