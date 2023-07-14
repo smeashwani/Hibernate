@@ -30,10 +30,4 @@ public class Runner {
 		List employees = query.list();
 		 employees.forEach(System.out::println);
 	}
-	
-	
-
-
-
-	
 }
