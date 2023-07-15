@@ -6,9 +6,8 @@ import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.sun.org.apache.xerces.internal.impl.dv.ValidatedInfo;
-
 import hibernate.training.entity.Employee;
+import jakarta.transaction.Transactional.TxType;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -31,8 +30,6 @@ public class Runner {
 	private static void fetchAll(Session session) {
 		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
 		resultList.forEach(System.out::println);
-		
-		
 	}
 
 	private static void save(Session session) {
@@ -41,10 +38,12 @@ public class Runner {
 		Employee e = new Employee();
 		e.setFirstName("First");
 		//e.setLastName("last");
-		if(validate(e)) {
+		if(!validate(e)) {
+			transaction.rollback();
+		}else {
 			session.persist(e);
+			transaction.commit();
 		}
-		transaction.commit();
 	}
 	
 	static public boolean validate(Employee e1) {
