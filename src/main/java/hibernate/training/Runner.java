@@ -1,6 +1,7 @@
 package hibernate.training;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import hibernate.training.entity.Employee;
 
@@ -22,31 +23,39 @@ public class Runner {
 
 	private static void fetchAll1(Session session) {
 		System.out.println("GET Session1()");
-		Employee employee = session.get(Employee.class, -1);
+		Query<Employee> createQuery = session.createQuery("from Employee as employee where employee.id =?1",Employee.class);
+		createQuery.setParameter(1, Integer.valueOf(-1));
+		//createQuery.setCacheable(true);
+		//createQuery.setCacheRegion("employee");
+
 		System.out.println("GET Session1...");
-		System.out.println(employee);
+		System.out.println(createQuery.getSingleResult());
 		
 		System.out.println("GET Session1");
-		employee = session.get(Employee.class, -1);
+		createQuery = session.createQuery("from Employee as employee where employee.id =?1",Employee.class);
+		//createQuery.setCacheable(true);
+		//createQuery.setCacheRegion("employee");
+		createQuery.setParameter(1, Integer.valueOf(-1));
+		
 		System.out.println("GET Session1");
-		System.out.println(employee);
+		System.out.println(createQuery.getSingleResult());
 	}
 	
 	private static void fetchAll2(Session session) {
 		System.out.println("GET Session2()");
-		Employee employee = session.get(Employee.class, -1);
+		Query<Employee> createQuery = session.createQuery("from Employee as employee where employee.id =?1",Employee.class);
+		//createQuery.setCacheable(true);
+		//createQuery.setCacheRegion("employee");
+		createQuery.setParameter(1, Integer.valueOf(-1));
 		System.out.println("GET Session2...");
-		System.out.println(employee);
+		System.out.println(createQuery.getSingleResult());
 		
 		System.out.println("GET Session2");
-		employee = session.get(Employee.class, -1);
+		createQuery = session.createQuery("from Employee as employee where employee.id =?1",Employee.class);
+		//createQuery.setCacheable(true);
+		//createQuery.setCacheRegion("employee");
+		createQuery.setParameter(1, Integer.valueOf(-1));
 		System.out.println("GET Session2");
-		System.out.println(employee);
+		System.out.println(createQuery.getSingleResult());
 	}
-	
-	
-
-
-
-	
 }
