@@ -23,9 +23,6 @@
 		<property name="hibernate.generate_statistics">true</property>
 
 		<!-- Mapping files -->
-		<!-- <mapping resource="employee.hbm.xml" /> -->
 		<mapping class="hibernate.training.entity.Employee" />
-		<mapping class="hibernate.training.entity.Contract_Employee" />
-		<mapping class="hibernate.training.entity.Regular_Employee" />
 	</session-factory>
 </hibernate-configuration> 

@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import hibernate.training.entity.Employee;
-import jakarta.transaction.Transactional.TxType;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -17,7 +16,7 @@ public class Runner {
 	public static void main(String[] args) {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
+		System.out.println("Session Created....");
 			save(session);
 			fetchAll(session);
 		
@@ -53,7 +52,8 @@ public class Runner {
 	      Set<ConstraintViolation<Employee>> constraintViolations = validator.validate(e1);
 	      if (constraintViolations.size() > 0) {
 	            for (ConstraintViolation<Employee> violation : constraintViolations) {
-	                System.err.println(violation.getMessage());
+	            	
+	                System.err.println(violation.getPropertyPath() +" - " + violation.getMessage());
 	            }
 	            return false;
 	       }
