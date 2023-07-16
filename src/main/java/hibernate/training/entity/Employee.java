@@ -11,7 +11,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="emp")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE) // by default
 @DiscriminatorValue(value="emp")
 public class Employee {
 	

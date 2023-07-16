@@ -13,7 +13,7 @@ public class Runner {
 	public static void main(String[] args) {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
+		System.out.println("..............open Session .............");
 			save(session);
 			fetchAll(session);
 		
@@ -22,12 +22,10 @@ public class Runner {
 		System.out.println("<<<<<<<<<<<");
 	}
 
-	@SuppressWarnings("deprecation")
 	private static void fetchAll(Session session) {
+		System.out.println("...........FETCHING...............");
 		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
 		resultList.forEach(System.out::println);
-		
-		
 	}
 
 	private static void save(Session session) {
