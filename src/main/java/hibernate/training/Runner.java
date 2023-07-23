@@ -13,6 +13,7 @@ public class Runner {
 	public static void main(String[] args) {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		System.out.println("..............Open Session .............");
 		
 			save(session);
 			fetchAll(session);
@@ -33,16 +34,19 @@ public class Runner {
 	private static void save(Session session) {
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
-		Employee e = new Employee();
-		e.setFirstName("First");
-		e.setLastName("last");
+		
 		Contract_Employee contract = new Contract_Employee();
 		contract.setContract_duration("100");
 		contract.setPay_per_hour(50);
-		e.setContract(contract);
+		
 		Regular_Employee regular = new Regular_Employee();
 		regular.setBonus(100);
 		regular.setSalary(50_000);
+		
+		Employee e = new Employee();
+		e.setFirstName("First");
+		e.setLastName("last");
+		e.setContract(contract);
 		e.setRegular(regular);
 		session.persist(e);
 		
