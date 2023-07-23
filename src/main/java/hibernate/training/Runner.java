@@ -13,7 +13,7 @@ public class Runner {
 	public static void main(String[] args) {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		
+		System.out.println("..............Open Session .............");
 			save(session);
 			fetchAll(session);
 		
