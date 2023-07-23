@@ -17,7 +17,7 @@ import jakarta.persistence.Transient;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="first_Name")
@@ -26,19 +26,10 @@ public class Employee {
 	private String lastName;
 	
 	@Transient
-	private String fullName;
-	
+	private String password;
+
 	public Employee() {}
 	
-	
-	@Embedded
-	private Contract_Employee contract;
-	
-	@Embedded
-	@AttributeOverrides({
-	@AttributeOverride(name = "bonus", column = @Column(name = "bonusAmount", length = 11))
-	})
-	private Regular_Employee regular;
 	
 	public int getId() {
 		return id;
@@ -59,30 +50,18 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public Contract_Employee getContract() {
-		return contract;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public void setContract(Contract_Employee contract) {
-		this.contract = contract;
-	}
-	public Regular_Employee getRegular() {
-		return regular;
-	}
-	public void setRegular(Regular_Employee regular) {
-		this.regular = regular;
+	
+	public String getPassword() {
+		return password;
 	}
 	
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", contract=" + contract
-				+ ", regular=" + regular + " Full Name="+ getFullName()+"]";
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName +
+				", Password="+ getPassword()+"]";
 	}
-	
-	public String getFullName() {
-		return this.firstName + this.lastName;
-	}
-	
-	
-
 } 
  
