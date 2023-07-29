@@ -13,9 +13,12 @@ public class Runner {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session1 = HibernateUtil.getSessionFactory().openSession();
 		Session session2 = HibernateUtil.getSessionFactory().openSession();
+		System.out.println("..............Open Session .............");
 		
-			//save(session);
-			fetchAllEmployees(session1);
+			//save(session1);
+			//List<Employee> allEmp = fetchAllEmployees(session1);
+			//remove(session1,allEmp.get(0));
+			//fetchAllEmployees(session1);
 			fetchAllAddress(session2);
 		
 		System.out.println("..............Close Session .............");
@@ -25,7 +28,7 @@ public class Runner {
 	}
 
 	@SuppressWarnings("deprecation")
-	private static void fetchAllEmployees(Session session) {
+	private static List<Employee> fetchAllEmployees(Session session) {
 		System.out.println("...............Employees Fetching...........");
 		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
 		resultList.forEach(e -> {
@@ -33,6 +36,16 @@ public class Runner {
 		});
 		System.out.println(resultList.get(1).address);
 		System.out.println("...............Employees end...........");
+		return resultList;
+	}
+	
+	private static void remove(Session session, Employee e) {
+		Transaction transaction = session.getTransaction();
+		transaction.begin();
+		System.out.println("...............Employees removing...........");
+		session.remove(e);
+		System.out.println("...............Employees removed...........");
+		transaction.commit();
 	}
 	
 	@SuppressWarnings("deprecation")

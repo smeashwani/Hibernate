@@ -1,9 +1,7 @@
 package hibernate.training.entity;
 
-import java.util.Arrays;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +16,7 @@ import jakarta.persistence.Table;
 public class Employee {
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="first_Name")
@@ -26,6 +24,8 @@ public class Employee {
 	
 	private String lastName;
 	
+	//for delete from address table
+	//@OneToOne(fetch= FetchType.LAZY, cascade =CascadeType.ALL )  
 	@OneToOne(fetch= FetchType.LAZY)
 	public Address address;
 	
