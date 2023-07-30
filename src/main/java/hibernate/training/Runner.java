@@ -13,8 +13,9 @@ public class Runner {
 		System.out.println(">>>>>>>>>>>>>>>>>>");
 		Session session1 = HibernateUtil.getSessionFactory().openSession();
 		Session session2 = HibernateUtil.getSessionFactory().openSession();
-		
-			//save(session);
+		System.out.println("..............Open Session .............");
+			
+			save(session1);
 			fetchAllEmployees(session1);
 			fetchAllAddress(session2);
 		
