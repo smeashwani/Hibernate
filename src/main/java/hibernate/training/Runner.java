@@ -7,14 +7,13 @@ import hibernate.training.entity.Employee;
 
 public class Runner {
 	public static void main(String[] args) {
-		saveMethod();
-		//persistMehtod();
+		//saveMethod();
+		persistMehtod();
 	}
 
-	
 	private static void persistMehtod() {
 			Employee e1 = new Employee();
-			e1.setFirstName("Gaurav");
+			e1.setFirstName("Guest");
 			try (Session session = HibernateUtil.getSessionFactory().openSession()){
 				// @formatter:off
 				Transaction tx = session.beginTransaction();
@@ -36,7 +35,7 @@ public class Runner {
 
 	private static void saveMethod() {
 		Employee e1 = new Employee();
-		e1.setFirstName("Gaurav");
+		e1.setFirstName("Guest");
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 
 			// @formatter:off
