@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
-import org.hibernate.transform.AliasToBeanResultTransformer;
-import org.hibernate.transform.AliasToEntityMapResultTransformer;
 
 import hibernate.training.entity.Employee;
 
@@ -22,11 +20,9 @@ public class Runner {
 		System.out.println("<<<<<<<<<<<");
 	}
 
-	@SuppressWarnings("deprecation")
 	private static void fetchAll(Session session) {
-		String sql = "SELECT first_name as firstName, lastName FROM emp";
-		NativeQuery query = session.createNativeQuery(sql);
-		query.setResultTransformer(new AliasToBeanResultTransformer(Employee.class));
+		String sql = "SELECT id, first_Name, lastName FROM emp";
+		NativeQuery query = session.createNativeQuery(sql,Employee.class);
 		List employees = query.list();
 		 employees.forEach(System.out::println);
 	}
