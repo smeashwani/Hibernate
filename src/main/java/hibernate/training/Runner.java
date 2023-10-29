@@ -20,25 +20,25 @@ public class Runner {
 		Transaction t = session.beginTransaction();
 			Employee e1 = new Employee();
 			e1.setId(101);
-			e1.setFirstName("Gaurav");
+			e1.setFirstName("Guest");
 			session.persist(e1);
 			System.out.println("successfully saved");
 			
 			e1 = new Employee();
 			e1.setId(102);
-			e1.setFirstName("Gaurav_2");
+			e1.setFirstName("Guest_2");
 			session.persist(e1);
 			System.out.println("successfully saved");
 			
 			e1 = new Employee();
 			e1.setId(103);
-			e1.setFirstName("Gaurav_3");
+			e1.setFirstName("Guest_3");
 			session.persist(e1);
 			System.out.println("successfully saved");
 			
 			e1 = new Employee();
 			e1.setId(104);
-			e1.setFirstName("Gaurav_4");
+			e1.setFirstName("Guest_4");
 			session.persist(e1);
 			System.out.println("successfully saved");
 		
