@@ -31,7 +31,8 @@ public class Runner {
 	
 	private static void fetchLoad(Session session) {
 		System.out.println("LOAD....");
-		Employee employee = session.load(Employee.class, -1);
+		// Employee employee = session.load(Employee.class, -1); // deprecated
+		Employee employee = session.getReference(Employee.class, -1);
 		System.out.println("Load from DB");
 		System.out.println(employee);
 	}
@@ -47,7 +48,7 @@ public class Runner {
 		Transaction tx = session.beginTransaction();
 			Employee e1 = new Employee();
 			e1.setFirstName("Guest_1");
-			e1.setLastName("DUCAT_1");
+			e1.setLastName("LastName_1");
 			session.persist(e1);
 		tx.commit();
 		System.out.println("successfully saved : "+ e1);
@@ -55,7 +56,7 @@ public class Runner {
 		tx = session.beginTransaction();
 			e1 = new Employee();
 			e1.setFirstName("Guest_2");
-			e1.setLastName("DUCAT_2");
+			e1.setLastName("LastName_2");
 			session.persist(e1);
 		tx.commit();
 		System.out.println("successfully saved: "+ e1);
@@ -64,7 +65,7 @@ public class Runner {
 		tx = session.beginTransaction();
 			e1 = new Employee();
 			e1.setFirstName("Guest_3");
-			e1.setLastName("DUCAT_3");
+			e1.setLastName("LastName_3");
 			session.persist(e1);
 		tx.commit();
 		System.out.println("successfully saved: "+ e1);
@@ -72,7 +73,7 @@ public class Runner {
 		tx = session.beginTransaction();
 			e1 = new Employee();
 			e1.setFirstName("Guest_4");
-			e1.setLastName("DUCAT_4");
+			e1.setLastName("LastName_4");
 			session.persist(e1);
 		tx.commit();
 		System.out.println("successfully saved: "+ e1);
@@ -80,7 +81,7 @@ public class Runner {
 		
 		// @formatter:on
 		
-		System.out.println("successfully operation completed");
+		System.out.println("successfully saved operation completed");
 		
 	}
 }
