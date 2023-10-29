@@ -18,10 +18,10 @@ public class Runner {
 		SessionFactory factory = meta.getSessionFactoryBuilder().build();
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
-		Employee e1 = new Employee();
-		e1.setId(101);
-		e1.setFirstName("Gaurav");
-		session.save(e1);
+			Employee e1 = new Employee();
+			e1.setId(101);
+			e1.setFirstName("Gaurav");
+			session.persist(e1);
 		t.commit();
 		System.out.println("successfully saved");
 		session.close();
