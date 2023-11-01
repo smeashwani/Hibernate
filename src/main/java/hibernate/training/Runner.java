@@ -1,7 +1,6 @@
 package hibernate.training;
 
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.IntStream;
 
 import org.hibernate.Session;
