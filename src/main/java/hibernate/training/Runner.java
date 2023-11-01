@@ -39,6 +39,7 @@ public class Runner {
 		Transaction transaction = session.getTransaction();
 		transaction.begin();
 			List<Employee> resultList = session.createQuery("From Employee where id=-1",Employee.class).getResultList();
+			//session.refresh(resultList.get(0));
 			Employee e =resultList.get(0);
 			e.setFirstName("Update Value "+ number);
 			session.persist(e);
