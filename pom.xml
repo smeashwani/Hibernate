@@ -37,19 +37,6 @@
 			<version>2.12.1</version>
 		</dependency>
 
-		<!--  Hibernate Validation -->
-		<!--
-		https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>8.0.1.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>jakarta.el</artifactId>
-			<version>4.0.1</version>
-		</dependency>
 	</dependencies>
 
 </project>

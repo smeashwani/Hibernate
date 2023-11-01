@@ -1,62 +1,48 @@
 package hibernate.training;
 
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.stream.IntStream;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import hibernate.training.entity.Employee;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 
 public class Runner {
 	public static void main(String[] args) {
-		System.out.println(">>>>>>>>>>>>>>>>>>");
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		System.out.println("Session Created....");
-			save(session);
-			fetchAll(session);
-		
-		System.out.println("..............Close Session .............");
-		session.close();
-		System.out.println("<<<<<<<<<<<");
-	}
-
-	@SuppressWarnings("deprecation")
-	private static void fetchAll(Session session) {
-		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
-		resultList.forEach(System.out::println);
-	}
-
-	private static void save(Session session) {
-		Transaction transaction = session.getTransaction();
-		transaction.begin();
-		Employee e = new Employee();
-		e.setFirstName("First");
-		//e.setLastName("last");
-		if(!validate(e)) {
-			transaction.rollback();
-		}else {
-			session.persist(e);
-			transaction.commit();
-		}
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		IntStream stream = IntStream.of(1,2);
+		stream.parallel().forEach(item -> {
+			task(sessionFactory,item);
+		});
 	}
 	
-	static public boolean validate(Employee e1) {
-	      ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	      //It validates bean instances
-	      Validator validator = factory.getValidator();
-	      Set<ConstraintViolation<Employee>> constraintViolations = validator.validate(e1);
-	      if (constraintViolations.size() > 0) {
-	            for (ConstraintViolation<Employee> violation : constraintViolations) {
-	            	
-	                System.err.println(violation.getPropertyPath() +" - " + violation.getMessage());
-	            }
-	            return false;
-	       }
-	      return true;
+	public static void task(SessionFactory sessionFactory,int number) {
+		System.out.println("Task "+ number+">>>>>>>>>>>>>>>>>>");
+		Session session = sessionFactory.openSession();
+		System.out.println("Task "+ number+" Session Created....");
+			fetchAll(session,number);
+			fetchAndSave(session, number);
+		System.out.println("Task "+ number+" ..............Close Session .............");
+		session.close();
+		System.out.println("Task "+ number+" <<<<<<<<<<<");
+	}
+	
+	private static void fetchAll(Session session,int number) {
+		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
+		resultList.forEach(System.out::println);
+		System.out.println("Task "+ number+"....... FETCHING DONE............");
+	}
+
+	private static void fetchAndSave(Session session,int number) {
+		Transaction transaction = session.getTransaction();
+		transaction.begin();
+			List<Employee> resultList = session.createQuery("From Employee where id=-1",Employee.class).getResultList();
+			Employee e =resultList.get(0);
+			e.setFirstName("Update Value "+ number);
+			session.persist(e);
+		transaction.commit();
 	}
 }
