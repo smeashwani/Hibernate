@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import lombok.Data;
 @NamedQueries(  
 	    {  
 	        @NamedQuery(  
@@ -22,41 +23,14 @@ import jakarta.persistence.Table;
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Entity
 @Table(name="emp")
+@Data
 public class Employee {
-	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
-	
 	@Column(name="first_Name")
 	private String firstName;
-	
 	private String lastName;
-	
 	public Employee() {}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
-	}
 } 
  
