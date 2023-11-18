@@ -21,7 +21,6 @@ public class Runner {
 		System.out.println("<<<<<<<<<<<");
 	}
 
-	@SuppressWarnings("deprecation")
 	private static void fetchAll(Session session) {
 		List<Employee> resultList = session.createQuery("From Employee",Employee.class).getResultList();
 		resultList.forEach(System.out::println);
